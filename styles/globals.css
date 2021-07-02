@@ -14,3 +14,60 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.brand {
+  font-weight: 900;
+}
+
+.nav-middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 65%;
+}
+
+.nav-middle > a {
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.nav-cart {
+  margin: 0 10px;
+}
+
+.nav-icon {
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.navigation {
+  background-color: bisque;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  height: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 3px solid rgba(228, 207, 182, 1);
+}
+
+.product-card {
+  display: flex;
+  justify-content: space-evenly;
+}
+.product-card-image-container {
+  display: flex;
+  position: relative;
+  height: auto;
+  min-width: 125px;
+}
+.product-card-content {
+  display: block;
+  max-width: 75%;
+}

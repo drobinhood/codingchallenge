@@ -55,7 +55,7 @@ export default function Home() {
         </main>
 
         <footer className={styles.footer}>
-          <p>Powered by The Internet</p>
+          <p>Powered by The Internet and people like you!</p>
         </footer>
       </div>
     </>
