@@ -49,9 +49,17 @@ export default function Home() {
           <h1 className={styles.title}>
             Welcome to <a href="#">my fake store!</a>
           </h1>
-          <p>Take a look at all our great <i>fake</i> products!</p>
+          <p>
+            Take a look at all our great <i>fake</i> products!
+          </p>
 
-          <div className={styles.grid}>{productList}</div>
+          <div className={styles.grid}>
+            {productList.length != 0 ? (
+              productList
+            ) : (
+              <p>...loading some really nice fake products</p>
+            )}
+          </div>
         </main>
 
         <footer className={styles.footer}>
