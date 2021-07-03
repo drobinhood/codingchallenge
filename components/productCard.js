@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import React, { useGlobal } from "reactn";
 
 export default function Product(props) {
+  const [cart, setCart] = useGlobal('cart')
+
   return (
     <>
       {props.detail ? <h1>{props.title}</h1> : ""}
@@ -19,6 +22,7 @@ export default function Product(props) {
           <p>{props.description}</p>
           <p>{props.price}</p>
         </div>
+        <button onClick={() => {setCart([cart + props.id])}}>Add to Cart</button>
         {props.id !== undefined ? (
           <Link
             href={{

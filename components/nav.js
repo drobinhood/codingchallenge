@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useGlobal } from "reactn";
 import Link from "next/link";
 import { CgShoppingCart } from "react-icons/cg";
 import { CgSearch } from "react-icons/cg";
 import NavCategories from "./navCategories";
 
 export default function Nav() {
+  const [cart, setCart] = useGlobal('cart');
+
   return (
     <nav className="navigation">
       <div className="nav-start">
@@ -17,15 +19,15 @@ export default function Nav() {
         </Link>
       </div>
       <div className="nav-middle">
-         <NavCategories/> 
+        <NavCategories />
       </div>
       <div className="nav-end">
-          
-        <Link href="/cart" className="nav-cart" passHref>
+        <Link href="#" className="nav-cart" passHref>
           <span className="nav-icon">
             <CgSearch />
           </span>
         </Link>
+        {cart}
         <Link href="/cart" className="nav-cart" passHref>
           <span className="nav-icon">
             <CgShoppingCart />
