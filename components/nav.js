@@ -1,12 +1,32 @@
-import React, { useGlobal } from "reactn";
+import React, { useEffect, useGlobal, useState } from "reactn";
 import Link from "next/link";
 import { CgShoppingCart } from "react-icons/cg";
 import { CgSearch } from "react-icons/cg";
 import NavCategories from "./navCategories";
+import Cart from "./cart";
 
 export default function Nav() {
-  const [cart, setCart] = useGlobal('cart');
+  const [showCart, setShowCart] = useGlobal("showCart");
+  const [cart, setCart] = useGlobal("cart");
+  const [cartTimer, setCartTimer] = useState(false);
 
+  // start timer when product added to cart
+  useEffect(() => {
+    if (cart.length !== 0) {
+      setCartTimer(true);
+    }
+  }, [cart])
+
+  // stop timer after 3 seconds
+  useEffect(() => {
+    if (cartTimer == true) {
+      const timer = setTimeout(() => {
+        setCartTimer(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [cartTimer]);
+  
   return (
     <nav className="navigation">
       <div className="nav-start">
@@ -21,18 +41,18 @@ export default function Nav() {
       <div className="nav-middle">
         <NavCategories />
       </div>
-      <div className="nav-end">
-        <Link href="#" className="nav-cart" passHref>
+      <div className="nav-end" onMouseLeave={() => setShowCart(false)}>
+        <Link href="#" className="nav-search-link" passHref>
           <span className="nav-icon">
             <CgSearch />
           </span>
         </Link>
-        {cart}
-        <Link href="/cart" className="nav-cart" passHref>
-          <span className="nav-icon">
+        <Link href="/cart" className="nav-cart-link" passHref>
+          <span className="nav-icon" onMouseEnter={() => setShowCart(true)}>
             <CgShoppingCart />
           </span>
         </Link>
+        {showCart || cartTimer ? <Cart /> : ""}
       </div>
     </nav>
   );

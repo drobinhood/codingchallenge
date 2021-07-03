@@ -33,6 +33,14 @@ a {
 }
 
 .nav-cart {
+    position:absolute;
+}
+
+.nav-search-link {
+  margin: 0 10px;
+}
+
+.nav-cart-link {
   margin: 0 10px;
 }
 

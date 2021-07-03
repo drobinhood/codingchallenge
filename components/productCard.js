@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useGlobal } from "reactn";
 
 export default function Product(props) {
-  const [cart, setCart] = useGlobal('cart')
+  const [cart, setCart] = useGlobal("cart");
 
   return (
     <>
@@ -22,7 +22,17 @@ export default function Product(props) {
           <p>{props.description}</p>
           <p>{props.price}</p>
         </div>
-        <button onClick={() => {setCart([cart + props.id])}}>Add to Cart</button>
+        <button
+          onClick={() => {
+            // add id to cart
+            cart.push(props.id.toString())
+            // make it unique
+            let cartSet = new Set(cart);
+            setCart([...cartSet]);
+          }}
+        >
+          Add to Cart
+        </button>
         {props.id !== undefined ? (
           <Link
             href={{

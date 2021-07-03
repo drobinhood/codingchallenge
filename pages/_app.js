@@ -1,9 +1,10 @@
-import '../styles/globals.css'
-import Nav from '../components/nav'
-import React, {setGlobal} from 'reactn'
+import "../styles/globals.css";
+import Nav from "../components/nav";
+import React, { setGlobal, useGlobal, useEffect } from "reactn";
 
 setGlobal({
-  cart: []
+  cart: [],
+  showCart: false,
 });
 
 function MyApp({ Component, pageProps }) {
@@ -13,4 +14,4 @@ function MyApp({ Component, pageProps }) {
   </>
 }
 
-export default MyApp
+export default MyApp;
