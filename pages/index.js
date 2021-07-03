@@ -1,27 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import React, { useState, useEffect } from "react";
+import React, { useGlobal} from "reactn";
 import ProductCard from "../components/productCard";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    async function fetchCategories() {
-      try {
-        const res = await fetch("https://fakestoreapi.com/products");
-        const json = await res.json();
-        setProducts(json);
-        setLoaded(true);
-      } catch (err) {
-        console.log("oh gosh, looks like ", err);
-      }
-    }
-
-    fetchCategories();
-  }, []);
+  const [products, setProducts] = useGlobal("products");
 
   const productList = products.map((product) => {
     return (
