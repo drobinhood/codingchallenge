@@ -1,4 +1,5 @@
 import React, { useEffect, useGlobal, useState } from "reactn";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { CgShoppingCart } from "react-icons/cg";
 import { CgSearch } from "react-icons/cg";
@@ -6,6 +7,7 @@ import NavCategories from "./navCategories";
 import Cart from "./cart";
 
 export default function Nav() {
+  const router = useRouter();
   const [showCart, setShowCart] = useGlobal("showCart");
   const [cart, setCart] = useGlobal("cart");
   const [cartTimer, setCartTimer] = useState(false);
@@ -15,7 +17,7 @@ export default function Nav() {
     if (cart.length !== 0) {
       setCartTimer(true);
     }
-  }, [cart])
+  }, [cart]);
 
   // stop timer after 3 seconds
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function Nav() {
       return () => clearTimeout(timer);
     }
   }, [cartTimer]);
-  
+
   return (
     <nav className="navigation">
       <div className="nav-start">
@@ -52,7 +54,7 @@ export default function Nav() {
             <CgShoppingCart />
           </span>
         </Link>
-        {showCart || cartTimer ? <Cart /> : ""}
+        {(showCart || cartTimer) && router.asPath !== "/cart" ? <Cart /> : ""}
       </div>
     </nav>
   );
