@@ -9,7 +9,7 @@ export default function Cart() {
   const [showDecision, setShowDecision] = useState(false);
   const [cartTotal, setCartTotal] = useGlobal("cartTotal");
 
-  useEffect(() => {}, [cartTotal]);
+  useEffect(() => { }, [cartTotal]);
 
   const items = cart.map((id) => {
     const product = products.find((x) => x.id == id);
@@ -56,13 +56,13 @@ export default function Cart() {
       <p>Cart total: ${cartTotal}</p>
       <div className="items-container">{items}</div>
       {cart.length !== 0 ? (
-        <Link href="/checkout">
+        <Link href="/checkout" passHref>
           <button>Checkout, pretend to buy some stuff!</button>
         </Link>
       ) : (
         ""
       )}
-      <Link href="/cart">
+      <Link href="/cart" passHref>
         <button>View Cart</button>
       </Link>
     </div>
