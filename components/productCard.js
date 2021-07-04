@@ -33,7 +33,7 @@ export default function Product(props) {
         >
           Add to Cart
         </button>
-        {props.id !== undefined ? (
+        {!props.detail || props.id == undefined ? (
           <Link
             href={{
               pathname: "/product/[product]",

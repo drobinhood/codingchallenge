@@ -6,6 +6,7 @@ function Product({ product }) {
     <div>
       <ProductCard
         key={product.id}
+        id={product.id}
         detail="true"
         image={product.image}
         title={product.title}
