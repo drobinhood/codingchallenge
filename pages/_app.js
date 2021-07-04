@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }) {
         : 0;
     
         setCartTotal(total);
-  }, [cart, cartTotal]);
+  }, [cart, cartTotal, products, setCartTotal]);
 
   useEffect(() => {
     async function fetchCategories() {
