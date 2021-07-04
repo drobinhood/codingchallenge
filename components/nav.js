@@ -54,7 +54,9 @@ export default function Nav() {
             <CgShoppingCart />
           </span>
         </Link>
-        {(showCart || cartTimer) && router.asPath !== "/cart" ? <Cart /> : ""}
+        <div onMouseEnter={() => {setShowCart(true)}}>
+          {(showCart || cartTimer) && router.asPath !== "/cart" ? <Cart /> : ""}
+        </div>
       </div>
     </nav>
   );
