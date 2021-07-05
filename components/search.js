@@ -13,6 +13,7 @@ export default function Search() {
   console.log("data", data);
   const index = lunr(function () {
     this.field("title");
+    this.field("category");
     this.field("description");
     this.field("price");
 
