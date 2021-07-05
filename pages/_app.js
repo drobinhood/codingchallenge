@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Nav from "../components/nav";
 import React, { setGlobal, useGlobal, useEffect } from "reactn";
+import Search from '../components/search'
 
 setGlobal({
   cart: [],
@@ -8,6 +9,7 @@ setGlobal({
   showCart: false,
   products: [],
   categories: [],
+  search: false
 });
 
 function MyApp({ Component, pageProps }) {
@@ -15,6 +17,7 @@ function MyApp({ Component, pageProps }) {
   const [categories, setCategories] = useGlobal("categories");
   const [cart, setCart] = useGlobal("cart");
   const [cartTotal, setCartTotal] = useGlobal("cartTotal");
+  const [search, setSearch] = useGlobal("search");
 
   useEffect(() => {
     const reducer = (acc, val) => acc + val;
@@ -63,6 +66,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Nav />
+      {search ? <Search /> : ""}
       <Component {...pageProps} />
     </>
   );
