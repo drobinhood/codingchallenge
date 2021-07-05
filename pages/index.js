@@ -9,6 +9,7 @@ export default function Home() {
   const [productList, setProductList] = useState([]);
   const [filterCategory, setFilterCategory] = useState("--");
   const [filterPriceRange, setFilterPriceRange] = useState(0);
+  const [sort, setSort] = useState("None");
   const priceRanges = useMemo(
     () => [
       ["--", "--"],
@@ -37,9 +38,9 @@ export default function Home() {
     });
 
     setProductList(filteredProducts);
-  }, [localProducts, filterPriceRange, filterCategory, priceRanges]);
+  }, [localProducts, filterPriceRange, filterCategory, priceRanges, sort]);
 
-  const displayProductList = <ProductList products={productList} />;
+  const displayProductList = <ProductList products={productList} sort={sort} />;
 
   const categoryOptions = categories.map((category) => {
     return (
@@ -71,7 +72,7 @@ export default function Home() {
               onChange={(e) => setFilterPriceRange(e.currentTarget.value)}
             >
               <option value={0} default>
-                -- Sort by Price --
+                -- Filter by Price --
               </option>
               <option value={1}>$0-25</option>
               <option value={2}>$25-50</option>
@@ -81,7 +82,7 @@ export default function Home() {
             </select>
             <select onChange={(e) => setFilterCategory(e.currentTarget.value)}>
               <option value="--" default>
-                -- Sort by Category --
+                -- Filter by Category --
               </option>
               {categoryOptions}
             </select>
@@ -98,6 +99,21 @@ export default function Home() {
           ) : (
             ""
           )}
+
+          <div className="sort-by-price">
+            <p>Sort by Price:</p>
+            <select
+              onChange={(e) => {
+                setSort(e.target.value);
+              }}
+            >
+              <option default value="None">
+                -- sort by price --
+              </option>
+              <option value="High">High to Low</option>
+              <option value="Low">Low to High</option>
+            </select>
+          </div>
 
           <div className={styles.grid}>{displayProductList}</div>
         </main>
