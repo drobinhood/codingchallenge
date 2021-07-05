@@ -125,7 +125,7 @@ export default function Checkout() {
           ></input>
         </label>
         <label>
-          Last name
+          Middle name
           <input
             {...register("billing-middlename", { required: true })}
             type="text"
@@ -162,7 +162,7 @@ export default function Checkout() {
           setCheckoutFlow(checkoutFlow + 1);
         }}
       >
-        Confirm Order
+        Proceed to Order Confirmation
       </button>
     </>
   );
