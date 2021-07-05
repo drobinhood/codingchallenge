@@ -44,7 +44,7 @@ export default function Nav() {
         <NavCategories />
       </div>
       <div className="nav-end" onMouseLeave={() => setShowCart(false)}>
-          {/* I don't like how close the cart opens to the search, makes it difficult to open search, fix if time available */}
+        {/* I don't like how close the cart opens to the search, makes it difficult to open search, fix if time available */}
         <span className="nav-icon" onClick={() => setSearch(!search)}>
           <CgSearch />
         </span>
@@ -53,7 +53,7 @@ export default function Nav() {
             className={"nav-icon " + (cartTimer ? " attract" : "")}
             onMouseEnter={() => setShowCart(true)}
           >
-            <CgShoppingCart />
+            <CgShoppingCart /> <span className="cart-amount">{cart.length}</span>
           </span>
         </Link>
         <div
@@ -61,7 +61,7 @@ export default function Nav() {
             setShowCart(true);
           }}
         >
-        {/* TODO rethink how to restrict cart for /cart  and /checkout paths */}
+          {/* TODO rethink how to restrict cart for /cart  and /checkout paths */}
           {showCart &&
           router.asPath !== "/cart" &&
           router.asPath !== "/checkout" &&
