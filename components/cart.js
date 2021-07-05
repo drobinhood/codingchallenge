@@ -3,13 +3,16 @@ import React, { useGlobal, useState } from "reactn";
 import Product from "../components/product";
 import Link from "next/link";
 
+// TODO fix styling for UX
+// buttons should be closer to icon, easier to access.
+
 export default function Cart() {
   const [cart, setCart] = useGlobal("cart");
-  const [products, setProducts] = useGlobal("products");
+  const [products] = useGlobal("products");
   const [showDecision, setShowDecision] = useState(false);
-  const [cartTotal, setCartTotal] = useGlobal("cartTotal");
+  const [cartTotal] = useGlobal("cartTotal");
 
-  useEffect(() => { }, [cartTotal]);
+  useEffect(() => {}, [cartTotal]);
 
   const items = cart.map((id) => {
     const product = products.find((x) => x.id == id);
@@ -33,7 +36,9 @@ export default function Cart() {
       }}
     >
       {cart.length !== 0 ? (
-        <button onClick={() => setShowDecision(true)}>Clear Cart</button>
+        <button className="small" onClick={() => setShowDecision(true)}>
+          Clear Cart
+        </button>
       ) : (
         ""
       )}
@@ -41,6 +46,7 @@ export default function Cart() {
       {showDecision ? (
         <>
           <button
+            className="small confirm"
             onClick={() => {
               setShowDecision(false);
               setCart([]);
@@ -48,16 +54,23 @@ export default function Cart() {
           >
             Yes
           </button>
-          <button onClick={() => setShowDecision(false)}>No</button>
+          <button
+            className="small reject"
+            onClick={() => setShowDecision(false)}
+          >
+            No
+          </button>
         </>
       ) : (
         ""
       )}
-      <p>Cart total: ${cartTotal}</p>
+      <p>
+        <b>Cart total:</b> ${cartTotal}
+      </p>
       <div className="items-container">{items}</div>
       {cart.length !== 0 ? (
         <Link href="/checkout" passHref>
-          <button>Checkout, pretend to buy some stuff!</button>
+          <button>Checkout!</button>
         </Link>
       ) : (
         ""
