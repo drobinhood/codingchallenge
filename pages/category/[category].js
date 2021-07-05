@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import Image from "next/image";
 import ProductCard from "../../components/productCard";
+import styles from "../../styles/all.module.css";
 
 export default function Category({ category }) {
   const router = useRouter();
@@ -8,23 +8,25 @@ export default function Category({ category }) {
 
   return (
     <>
-    <div>
-      <p>Category {query.category}</p>
-      <div>
-        {category.map((category) => {
-          return (
-            <ProductCard
-              key={category.id}
-              id={category.id}
-              image={category.image}
-              title={category.title}
-              description={category.description}
-              price={category.price}
-            />
-          );
-        })}
-      </div>
-    </div>
+      <main className={styles.main}>
+        <div className={styles.grid}>
+          <h1 className={styles.title}>{query.category}</h1>
+          <div>
+            {category.map((category) => {
+              return (
+                <ProductCard
+                  key={category.id}
+                  id={category.id}
+                  image={category.image}
+                  title={category.title}
+                  description={category.description}
+                  price={category.price}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </main>
     </>
   );
 }
@@ -34,6 +36,8 @@ export async function getStaticPaths() {
   // fetch slugs for categories
   const res = await fetch("https://fakestoreapi.com/products/categories");
   const categories = await res.json();
+
+  // TODO add filter by price to category page
 
   // Get the paths we want to pre-render based on categories
   const paths = categories.map((category) => ({
