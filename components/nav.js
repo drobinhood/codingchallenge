@@ -1,8 +1,7 @@
 import React, { useEffect, useGlobal, useState } from "reactn";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { CgShoppingCart } from "react-icons/cg";
-import { CgSearch } from "react-icons/cg";
+import { CgShoppingCart, CgSearch } from "react-icons/cg";
 import NavCategories from "./navCategories";
 import Cart from "./cart";
 
@@ -20,7 +19,7 @@ export default function Nav() {
     }
   }, [cart]);
 
-  // stop timer after 3 seconds
+  // stop timer after 3 seconds, shows underline for cart icon when product is added
   useEffect(() => {
     if (cartTimer == true) {
       const timer = setTimeout(() => {
@@ -31,7 +30,7 @@ export default function Nav() {
   }, [cartTimer]);
 
   return (
-    <nav className="navigation">
+    <nav className="navigation" onMouseLeave={() => setShowCart(false)}>
       <div className="nav-start">
         <Link href="/" className="brand" passHref>
           <a>
@@ -45,18 +44,32 @@ export default function Nav() {
         <NavCategories />
       </div>
       <div className="nav-end" onMouseLeave={() => setShowCart(false)}>
-        <Link href="#" className="nav-search-link" passHref>
+          {/* I don't like how close the cart opens to the search, makes it difficult to open search, fix if time available */}
         <span className="nav-icon" onClick={() => setSearch(!search)}>
           <CgSearch />
         </span>
-        </Link>
-        <Link href="/cart" className="nav-cart-link" passHref>
-          <span className="nav-icon" onMouseEnter={() => setShowCart(true)}>
+        <Link href="/cart" passHref>
+          <span
+            className={"nav-icon " + (cartTimer ? " attract" : "")}
+            onMouseEnter={() => setShowCart(true)}
+          >
             <CgShoppingCart />
           </span>
         </Link>
-        <div onMouseEnter={() => {setShowCart(true)}}>
-          {(showCart || cartTimer) && router.asPath !== "/cart" ? <Cart /> : ""}
+        <div
+          onMouseEnter={() => {
+            setShowCart(true);
+          }}
+        >
+        {/* TODO rethink how to restrict cart for /cart  and /checkout paths */}
+          {showCart &&
+          router.asPath !== "/cart" &&
+          router.asPath !== "/checkout" &&
+          router.asPath !== "/checkout/success" ? (
+            <Cart />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </nav>
