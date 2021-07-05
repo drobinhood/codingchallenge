@@ -36,7 +36,7 @@ View dev pages [http://localhost:3000](http://localhost:3000)
 
 ## Quick Link
 
-*add quick link*
+[https://codingchallenge.vercel.app/](View it on the internet, quick!)
 
 ## Goal
 

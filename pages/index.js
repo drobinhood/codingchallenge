@@ -120,6 +120,7 @@ export default function Home() {
 
         <footer className={styles.footer}>
           <p>Powered by The Internet and people like you!</p>
+          <a href="https://github.com/drobinhood/codingchallenge">src</a>
         </footer>
       </div>
     </>
