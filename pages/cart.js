@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import React, { useGlobal, useState } from "reactn";
 import styles from "../styles/all.module.css";
 import Product from "../components/product";
+import Link from "next/link";
 
 export default function Cart() {
   const [cart, setCart] = useGlobal("cart");
-  const [products, setProducts] = useGlobal("products");
+  const [products] = useGlobal("products");
   const [showDecision, setShowDecision] = useState(false);
-  const [cartTotal, setCartTotal] = useGlobal("cartTotal");
+  const [cartTotal] = useGlobal("cartTotal");
+  const [search, setSearch] = useGlobal("search");
 
   useEffect(() => {}, [cartTotal]);
 
@@ -49,8 +51,21 @@ export default function Cart() {
         ) : (
           ""
         )}
-        <p>Cart total: ${cartTotal}</p>
-        <div className={styles.grid}>{items}</div>
+        {cart.length !== 0 ? (
+          <>
+            <p>Cart total: ${cartTotal}</p>
+            <div className={styles.grid}>{items}</div>
+            <Link href="/checkout" passHref>
+              <button>Proceed To Checkout</button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <h2>Looks like your cart is empty!</h2>
+            <p>Try added something to it!</p>
+            <button onClick={() => {setSearch(true)}}>Search for something to add to your cart!</button>
+          </>
+        )}
       </main>
     </div>
   );
