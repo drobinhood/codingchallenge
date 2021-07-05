@@ -21,31 +21,34 @@ export default function Product(props) {
           {props.detail ? "" : <p>{props.title}</p>}
           <p>{props.description}</p>
           <p>{props.price}</p>
+          <div className="product-card-content-button-container">
+            <button
+              onClick={() => {
+                // add id to cart
+                cart.push(props.id.toString());
+                // make it unique
+                let cartSet = new Set(cart);
+                setCart([...cartSet]);
+              }}
+              className="small"
+            >
+              Add to Cart
+            </button>
+            {!props.detail || props.id == undefined ? (
+              <Link
+                passHref
+                href={{
+                  pathname: "/product/[product]",
+                  query: { product: props.id },
+                }}
+              >
+                <button className="small">View More</button>
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
-        <button
-          onClick={() => {
-            // add id to cart
-            cart.push(props.id.toString())
-            // make it unique
-            let cartSet = new Set(cart);
-            setCart([...cartSet]);
-          }}
-        >
-          Add to Cart
-        </button>
-        {!props.detail || props.id == undefined ? (
-          <Link
-          passHref
-            href={{
-              pathname: "/product/[product]",
-              query: { product: props.id },
-            }}
-          >
-            <button>View More</button>
-          </Link>
-        ) : (
-          ""
-        )}
       </div>
     </>
   );

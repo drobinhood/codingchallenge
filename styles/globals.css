@@ -84,6 +84,11 @@ a {
   max-width: 75%;
 }
 
+.product-card-content-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .product {
   position: relative;
   display: flex;
