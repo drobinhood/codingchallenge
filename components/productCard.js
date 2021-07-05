@@ -35,6 +35,7 @@ export default function Product(props) {
         </button>
         {!props.detail || props.id == undefined ? (
           <Link
+          passHref
             href={{
               pathname: "/product/[product]",
               query: { product: props.id },
