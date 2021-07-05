@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import ProductCard from "../../components/productCard";
 import styles from "../../styles/all.module.css";
 
-// TODO add category link to Product Detail.
 // TODO add recommended products in category if time permits.
 
 function Product({ product }) {
@@ -17,6 +16,7 @@ function Product({ product }) {
           title={product.title}
           description={product.description}
           price={product.price}
+          category={product.category}
         />
       </div>
     </main>

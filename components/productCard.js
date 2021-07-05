@@ -20,7 +20,10 @@ export default function Product(props) {
         <div className="product-card-content">
           {props.detail ? "" : <p>{props.title}</p>}
           <p>{props.description}</p>
-          <p>{props.price}</p>
+          <Link href={"/category/" + props.category} passHref>
+            <a style={{ borderBottom: "solid 1px orange" }}>{props.category}</a>
+          </Link>
+          <p><b>{props.price}</b></p>
           <div className="product-card-content-button-container">
             <button
               onClick={() => {
