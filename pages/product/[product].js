@@ -1,19 +1,25 @@
 import { useRouter } from "next/router";
 import ProductCard from "../../components/productCard";
+import styles from "../../styles/all.module.css";
+
+// TODO add category link to Product Detail.
+// TODO add recommended products in category if time permits.
 
 function Product({ product }) {
   return (
-    <div>
-      <ProductCard
-        key={product.id}
-        id={product.id}
-        detail="true"
-        image={product.image}
-        title={product.title}
-        description={product.description}
-        price={product.price}
-      />
-    </div>
+    <main className={styles.main}>
+      <div className={styles.grid}>
+        <ProductCard
+          key={product.id}
+          id={product.id}
+          detail="true"
+          image={product.image}
+          title={product.title}
+          description={product.description}
+          price={product.price}
+        />
+      </div>
+    </main>
   );
 }
 
