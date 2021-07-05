@@ -11,6 +11,7 @@ export default function Nav() {
   const [showCart, setShowCart] = useGlobal("showCart");
   const [cart, setCart] = useGlobal("cart");
   const [cartTimer, setCartTimer] = useState(false);
+  const [search, setSearch] = useGlobal("search");
 
   // start timer when product added to cart
   useEffect(() => {
@@ -45,9 +46,9 @@ export default function Nav() {
       </div>
       <div className="nav-end" onMouseLeave={() => setShowCart(false)}>
         <Link href="#" className="nav-search-link" passHref>
-          <span className="nav-icon">
-            <CgSearch />
-          </span>
+        <span className="nav-icon" onClick={() => setSearch(!search)}>
+          <CgSearch />
+        </span>
         </Link>
         <Link href="/cart" className="nav-cart-link" passHref>
           <span className="nav-icon" onMouseEnter={() => setShowCart(true)}>
